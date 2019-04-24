@@ -1,5 +1,5 @@
 resources:
-  - name: ankul_sample_node
+  - name: app
     type: gitRepo
     repoPath: ankul-shippable/sample_node
     configuration:
@@ -10,34 +10,79 @@ resources:
       sha: master
 
 pipelines:
-  - name: ankul_test_pipeline
+  - name: ci_pipeline
     steps:
-      - name: ankul_test_bash_step
+      - name: build
         type: bash
         setup:
-          runtime: 
+          runtime:
             type: image
             image:
-              custom:
-                name: drydock/u16all
-                tag: master
-        requires:
-          integrations:
-            - docker_registry
+             custom:
+               name: drydock/u16all
+               tag: master
         triggeredBy:
           resources:
-            - ankul_sample_node 
+            - app
         execution:
           onExecute:
-            - echo "executing test bash step..."
-            - printenv
-            - docker login -u $int_docker_registry_username -p $int_docker_registry_password $int_docker_registry_url
-            - rt_ip=$(echo $int_docker_registry_url | awk -F[/:] '{print $4}')
-            - rt_port=$(echo $int_docker_registry_url | awk -F[/:] '{print $5}')
-            - echo $rt_ip
-            - echo $rt_port     
-            - docker pull $rt_ip:$rt_port/docker-virtual/busybox:latest
-            - ls $res_ankul_sample_node_resourcePath/gitRepo
-            - pushd $res_ankul_sample_node_resourcePath/gitRepo
-            - docker build -t $rt_ip:$rt_port/docker-virtual/alpine:$STEP_ID -f Dockerfile .
-            - docker push $rt_ip:$rt_port/docker-virtual/alpine:$STEP_ID
+            - ls $res_app_resourcePath/gitRepo
+            - docker build -t app:latest .
+
+      - name: test
+        type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+        triggeredBy:
+          steps:
+            - build
+        execution:
+          onExecute:
+            - docker run --name "test_app" app:latest bash -c "pwd"
+            - docker rm -fv "test_app"
+
+      - name: push
+        type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+        requires:
+          integrations:
+            - art
+        triggeredBy:
+          steps:
+            - test
+        execution:
+          onExecute:
+            - docker login -u $int_art_username -p $int_art_password $int_art_url
+            - artIp=$(echo $int_art_url | awk -F[/:] '{print $4}')
+            - artPort=$(echo $int_art_url | awk -F[/:] '{print $5}')
+            - echo "$artIp:$artPort"
+            - docker tag app:latest $artIp:$artPort/demo/app:$STEP_ID
+            - docker push $artIp:$artPort/demo/app:$STEP_ID
+
+      - name: job2
+        type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16all
+               tag: master
+
+        triggeredBy:
+          steps:
+            - build
+        execution:
+          onExecute:
+            - echo "job2...."
