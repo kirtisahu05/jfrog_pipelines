@@ -1,88 +1,29 @@
-resources:
-  - name: app
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
-    configuration:
-      integrationName: ankul_github
-      branches:
-        only: master
-    initialVersion:
-      sha: master
-
 pipelines:
-  - name: ci_pipeline
+  - name: pipeline_1
     steps:
-      - name: build
-        type: bash
-        setup:
-          runtime:
-            type: image
-            image:
-             custom:
-               name: drydock/u16all
-               tag: master
-        triggeredBy:
-          resources:
-            - app
-        execution:
-          onExecute:
-            - ls $res_app_resourcePath/gitRepo
-            - docker build -t app:latest .
+       - name: test_bash_step
+         type: bash
+         execute:
+           onExecute:
+             - echo hello_world!
 
-      - name: test
-        type: bash
-        setup:
-          runtime:
-            type: image
-            image:
-             custom:
-               name: drydock/u16all
-               tag: master
-        triggeredBy:
-          steps:
-            - build
-        execution:
-          onExecute:
-            - docker run --name "test_app" app:latest bash -c "pwd"
-            - docker rm -fv "test_app"
-
-      - name: push
-        type: bash
-        setup:
-          runtime:
-            type: image
-            image:
-             custom:
-               name: drydock/u16all
-               tag: master
-        requires:
-          integrations:
-            - art
-        triggeredBy:
-          steps:
-            - test
-        execution:
-          onExecute:
-            - docker login -u $int_art_username -p $int_art_password $int_art_url
-            - artIp=$(echo $int_art_url | awk -F[/:] '{print $4}')
-            - artPort=$(echo $int_art_url | awk -F[/:] '{print $5}')
-            - echo "$artIp:$artPort"
-            - docker tag app:latest $artIp:$artPort/demo/app:$STEP_ID
-            - docker push $artIp:$artPort/demo/app:$STEP_ID
-
-      - name: job2
-        type: bash
-        setup:
-          runtime:
-            type: image
-            image:
-             custom:
-               name: drydock/u16all
-               tag: master
-
-        triggeredBy:
-          steps:
-            - build
-        execution:
-          onExecute:
-            - echo "job2...."
+       - name: test_bash_step_2
+         type: bash
+         setup:
+           runtime:
+             type: image
+         execute:
+           onExecute:
+             - echo hello_world!
+             
+       - name: test_bash_step_2
+         type: bash
+         setup:
+           runtime:
+             type: image
+             auto:
+               random: value
+         execute:
+           onExecute:
+             - echo hello_world!             
+             
