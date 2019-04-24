@@ -1,5 +1,5 @@
 pipelines:
-  - name: pipeline_1
+  - name: pipeline_default_auto_test
     steps:
        - name: test_bash_step
          type: bash
