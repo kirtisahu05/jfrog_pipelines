@@ -20,7 +20,7 @@ pipelines:
             versions:
               - 11.10.0  
     steps:
-       - name: 1_step_without_runtime
+       - name: step_without_runtime_1
          type: bash
          requires:
            resources:
@@ -29,7 +29,7 @@ pipelines:
            onExecute:
              - echo hello_world!
 
-       - name: 1_step_with_image_runtime
+       - name: step_with_image_runtime_1
          type: bash
          setup:
            runtime:
@@ -46,7 +46,7 @@ pipelines:
            onExecute:
              - echo hello_world!
 
-       - name: 1_step_with_custom_runtime
+       - name: step_with_custom_runtime_1
          type: bash
          setup:
            runtime:
@@ -72,7 +72,7 @@ pipelines:
             name: drydock/u16javall
             tag: master 
     steps:
-       - name: 2_step_without_runtime
+       - name: step_without_runtime_2
          type: bash
          requires:
            resources:
@@ -81,7 +81,7 @@ pipelines:
            onExecute:
              - echo hello_world!
 
-       - name: 2_step_with_image_runtime
+       - name: step_with_image_runtime_2
          type: bash
          setup:
            runtime:
@@ -98,7 +98,7 @@ pipelines:
            onExecute:
              - echo hello_world!
 
-       - name: 2_step_with_custom_runtime
+       - name: step_with_custom_runtime_2
          type: bash
          setup:
            runtime:
