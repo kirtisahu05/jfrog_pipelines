@@ -3,7 +3,7 @@ pipelines:
     steps:
        - name: test_bash_step
          type: bash
-         execute:
+         execution:
            onExecute:
              - echo hello_world!
 
@@ -12,7 +12,7 @@ pipelines:
          setup:
            runtime:
              type: image
-         execute:
+         execution:
            onExecute:
              - echo hello_world!
              
@@ -23,7 +23,7 @@ pipelines:
              type: image
              auto:
                random: value
-         execute:
+         execution:
            onExecute:
              - echo hello_world!             
              
