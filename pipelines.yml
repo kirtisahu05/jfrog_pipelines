@@ -47,3 +47,19 @@ pipelines:
            onExecute:
              - echo hello_world!             
              
+       - name: test_bash_step_4
+         type: bash
+         setup:
+           runtime
+            type: image
+            image:
+              custom:
+                name: drydock/u16all
+                tag: master
+         requires:
+           resources:
+             - ankul_sample_node               
+         execution:
+           onExecute:
+             - echo hello_world!             
+                          
