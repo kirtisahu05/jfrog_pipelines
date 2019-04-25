@@ -62,6 +62,19 @@ pipelines:
          execution:
            onExecute:
              - echo hello_world!
+             
+       - name: step_with_host_runtime_1
+         type: bash
+         setup:
+           runtime:
+             type: host
+
+         requires:
+           resources:
+             - ankul_sample_node             
+         execution:
+           onExecute:
+             - echo hello_world!             
 
   - name: pipeline_with_custom_runtime
     setup:
