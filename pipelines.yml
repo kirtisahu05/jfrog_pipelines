@@ -33,7 +33,7 @@ pipelines:
            onExecute:
              - echo hello_world!
              
-       - name: test_bash_step_2
+       - name: test_bash_step_3
          type: bash
          setup:
            runtime:
