@@ -63,3 +63,85 @@ pipelines:
            onExecute:
              - echo hello_world!             
                           
+                         
+       - name: invalid_language
+         type: bash
+         setup:
+           runtime:
+            type: image
+            image:
+              auto:
+                language: its_invalid_lang
+         requires:
+           resources:
+             - ankul_sample_node               
+         execution:
+           onExecute:
+             - echo hello_world!             
+                                                   
+       - name: invalid_version
+         type: bash
+         setup:
+           runtime:
+            type: image
+            image:
+              auto:
+                language: nodeJs
+                versions:
+                  - 10.10.10
+         requires:
+           resources:
+             - ankul_sample_node               
+         execution:
+           onExecute:
+             - echo hello_world!  
+             
+       - name: select_default_version
+         type: bash
+         setup:
+           runtime:
+            type: image
+            image:
+              auto:
+                language: nodeJs
+         requires:
+           resources:
+             - ankul_sample_node               
+         execution:
+           onExecute:
+             - echo hello_world!               
+             
+       - name: correct_version
+         type: bash
+         setup:
+           runtime:
+            type: image
+            image:
+              auto:
+                language: nodeJs
+                versions:
+                  - 8.15.0
+         requires:
+           resources:
+             - ankul_sample_node               
+         execution:
+           onExecute:
+             - echo hello_world!   
+             
+       - name: multiple_versions
+         type: bash
+         setup:
+           runtime:
+            type: image
+            image:
+              auto:
+                language: nodeJs
+                versions:
+                  - 11.10.0
+                  - 10.15.1
+         requires:
+           resources:
+             - ankul_sample_node               
+         execution:
+           onExecute:
+             - echo hello_world!                
