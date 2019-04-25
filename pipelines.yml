@@ -107,6 +107,12 @@ pipelines:
                custom:
                  name: drydock/u16phpall
                  tag: master
+         requires:
+           resources:
+             - ankul_sample_node             
+         execution:
+           onExecute:
+             - echo hello_world!                 
 
   - name: pipeline_default_auto_test
     steps:
