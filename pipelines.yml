@@ -10,6 +10,104 @@ resources:
       sha: master
 
 pipelines:
+  - name: pipeline_with_image_runtime
+    setup:
+      runtime:
+        type: image
+        image:
+          auto:
+            language: nodeJs
+            versions:
+              - 10.10.10  
+    steps:
+       - name: 1_step_without_runtime
+         type: bash
+         requires:
+           resources:
+             - ankul_sample_node
+         execution:
+           onExecute:
+             - echo hello_world!
+
+       - name: 1_step_with_image_runtime
+         type: bash
+         setup:
+           runtime:
+             type: image
+             image:
+               auto:
+                 language: nodeJs
+                 versions:
+                   - 8.15.0
+         requires:
+           resources:
+             - ankul_sample_node             
+         execution:
+           onExecute:
+             - echo hello_world!
+
+       - name: 1_step_with_custom_runtime
+         type: bash
+         setup:
+           runtime:
+             type: image
+             image:
+               custom:
+                 imageName: drydock/u16ruball
+                 imageTag: master
+                 
+         requires:
+           resources:
+             - ankul_sample_node             
+         execution:
+           onExecute:
+             - echo hello_world!
+
+  - name: pipeline_with_custom_runtime
+    setup:
+      runtime:
+        type: image
+        image:
+          custom:
+            imageName: drydock/u16javall
+            imageTag: master 
+    steps:
+       - name: 2_step_without_runtime
+         type: bash
+         requires:
+           resources:
+             - ankul_sample_node
+         execution:
+           onExecute:
+             - echo hello_world!
+
+       - name: 2_step_with_image_runtime
+         type: bash
+         setup:
+           runtime:
+             type: image
+             image:
+               auto:
+                 language: nodeJs
+                 versions:
+                   - 8.15.0
+         requires:
+           resources:
+             - ankul_sample_node             
+         execution:
+           onExecute:
+             - echo hello_world!
+
+       - name: 2_step_with_custom_runtime
+         type: bash
+         setup:
+           runtime:
+             type: image
+             image:
+               custom:
+                 imageName: drydock/u16phpall
+                 imageTag: master
+
   - name: pipeline_default_auto_test
     steps:
        - name: test_bash_step
