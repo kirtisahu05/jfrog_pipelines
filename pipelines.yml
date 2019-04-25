@@ -53,8 +53,8 @@ pipelines:
              type: image
              image:
                custom:
-                 imageName: drydock/u16ruball
-                 imageTag: master
+                 name: drydock/u16ruball
+                 tag: master
                  
          requires:
            resources:
@@ -69,8 +69,8 @@ pipelines:
         type: image
         image:
           custom:
-            imageName: drydock/u16javall
-            imageTag: master 
+            name: drydock/u16javall
+            tag: master 
     steps:
        - name: 2_step_without_runtime
          type: bash
@@ -105,8 +105,8 @@ pipelines:
              type: image
              image:
                custom:
-                 imageName: drydock/u16phpall
-                 imageTag: master
+                 name: drydock/u16phpall
+                 tag: master
 
   - name: pipeline_default_auto_test
     steps:
