@@ -1,8 +1,22 @@
+resources:
+  - name: ankul_sample_node
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
+    configuration:
+      integrationName: github_int
+      branches:
+        only: master
+    initialVersion:
+      sha: master
+
 pipelines:
   - name: pipeline_default_auto_test
     steps:
        - name: test_bash_step
          type: bash
+         requires:
+           resources:
+             - ankul_sample_node
          execution:
            onExecute:
              - echo hello_world!
@@ -12,6 +26,9 @@ pipelines:
          setup:
            runtime:
              type: image
+         requires:
+           resources:
+             - ankul_sample_node             
          execution:
            onExecute:
              - echo hello_world!
@@ -23,6 +40,9 @@ pipelines:
              type: image
              auto:
                random: value
+         requires:
+           resources:
+             - ankul_sample_node               
          execution:
            onExecute:
              - echo hello_world!             
