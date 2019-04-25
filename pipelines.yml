@@ -50,7 +50,7 @@ pipelines:
        - name: test_bash_step_4
          type: bash
          setup:
-           runtime
+           runtime:
             type: image
             image:
               custom:
