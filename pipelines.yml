@@ -9,21 +9,7 @@ resources:
     initialVersion:
       sha: master
 
-pipelines:
-  - name: ankul_test_pipeline
-    steps:
-      - name: ankul_test_bash_step
-        type: bash
-        setup:
-          runtime: 
-            type: host
-        triggeredBy:
-          resources:
-            - ankul_sample_node 
-        execution:
-          onExecute:
-            - echo "executing test bash step1..."
-            
+pipelines:            
       - name: ankul_test_bash_step_2
         type: bash
         setup:
