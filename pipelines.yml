@@ -9,7 +9,9 @@ resources:
     initialVersion:
       sha: master
 
-pipelines:            
+pipelines:
+  - name: ankul_test_pipeline
+    steps:
       - name: ankul_test_bash_step_2
         type: bash
         setup:
