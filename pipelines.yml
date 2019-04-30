@@ -1,5 +1,5 @@
 resources:
-  - name: ankul_sample_node_2
+  - name: ankul_sample_node
     type: gitRepo
     repoPath: ankul-shippable/sample_node
     configuration:
@@ -13,6 +13,18 @@ pipelines:
   - name: ankul_test_pipeline
     steps:
       - name: ankul_test_bash_step
+        type: bash
+        setup:
+          runtime: 
+            type: host
+        triggeredBy:
+          resources:
+            - ankul_sample_node 
+        execution:
+          onExecute:
+            - echo "executing test bash step..."
+
+      - name: ankul_test_bash_step_2
         type: bash
         setup:
           runtime: 
