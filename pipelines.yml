@@ -12,14 +12,14 @@ resources:
 pipelines:
   - name: ankul_test_pipeline_3
     steps:
-      - name: ankul_test_bash_step_3
-        type: bash
-        triggeredBy:
-          resources:
-            - ankul_sample_node
-        execution:
-          onExecute:
-            - echo "executing test bash step 3..."
+#       - name: ankul_test_bash_step_3
+#         type: bash
+#         triggeredBy:
+#           resources:
+#             - ankul_sample_node
+#         execution:
+#           onExecute:
+#             - echo "executing test bash step 3..."
             
       - name: ankul_test_bash_step_4
         type: bash
