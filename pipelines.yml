@@ -10,27 +10,27 @@ resources:
       sha: master
 
 pipelines:
-  - name: ankul_test_pipeline_4
-    steps:
-      - name: pipe_4_step_1
-        type: bash
-        triggeredBy:
-          resources:
-            - ankul_sample_node
-        execution:
-          onExecute:
-            - echo "executing test bash step pipe_4_step_1..."
+#   - name: ankul_test_pipeline_4
+#     steps:
+#       - name: pipe_4_step_1
+#         type: bash
+#         triggeredBy:
+#           resources:
+#             - ankul_sample_node
+#         execution:
+#           onExecute:
+#             - echo "executing test bash step pipe_4_step_1..."
             
-      - name: pipe_4_step_2
-        type: bash
-        triggeredBy:
-          resources:
-            - ankul_sample_node
-          steps:
-            - pipe_4_step_1
-        execution:
-          onExecute:
-            - echo "executing test bash step pipe_4_step_2..." 
+#       - name: pipe_4_step_2
+#         type: bash
+#         triggeredBy:
+#           resources:
+#             - ankul_sample_node
+#           steps:
+#             - pipe_4_step_1
+#         execution:
+#           onExecute:
+#             - echo "executing test bash step pipe_4_step_2..." 
             
   - name: ankul_test_pipeline_3
     steps:
