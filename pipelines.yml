@@ -20,6 +20,15 @@ pipelines:
         execution:
           onExecute:
             - echo "executing test bash step..."
+            
+      - name: ankul_test_bash_step_4
+        type: bash
+        triggeredBy:
+          resources:
+            - ankul_sample_node
+        execution:
+          onExecute:
+            - echo "executing test bash step..."            
 
   - name: ankul_test_pipeline
     steps:
