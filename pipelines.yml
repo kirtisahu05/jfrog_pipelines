@@ -12,7 +12,6 @@ resources:
 pipelines:
   - name: ankul_test_pipeline
     steps:
- 
       - name: ankul_test_bash_step_2
         type: bash
         setup:
@@ -28,8 +27,6 @@ pipelines:
         triggeredBy:
           resources:
             - ankul_sample_node
-          steps:
-            - ankul_test_bash_step
         execution:
           onExecute:
             - echo "executing test bash step..."
