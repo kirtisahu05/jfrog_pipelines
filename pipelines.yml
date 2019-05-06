@@ -12,6 +12,36 @@ resources:
 pipelines:
   - name: ankul_test_pipeline
     steps:
+      - name: ankul_test_bash_step
+        type: bash
+        setup:
+          runtime: 
+            type: image
+            image:
+              custom:
+                name: drydock/u16all
+                tag: master
+        requires:
+          integrations:
+            - docker_registry
+        triggeredBy:
+          resources:
+            - ankul_sample_node
+        execution:
+          onExecute:
+            - echo "executing test bash step..."
+            - printenv
+            - docker login -u $int_docker_registry_username -p $int_docker_registry_password $int_docker_registry_url
+            - rt_ip=$(echo $int_docker_registry_url | awk -F[/:] '{print $4}')
+            - rt_port=$(echo $int_docker_registry_url | awk -F[/:] '{print $5}')
+            - echo $rt_ip
+            - echo $rt_port     
+            - docker pull $rt_ip:$rt_port/docker-virtual/busybox:latest
+            - ls $res_ankul_sample_node_resourcePath/gitRepo
+            - pushd $res_ankul_sample_node_resourcePath/gitRepo
+            - docker build -t $rt_ip:$rt_port/docker-virtual/alpine:$STEP_ID -f Dockerfile .
+            - docker push $rt_ip:$rt_port/docker-virtual/alpine:$STEP_ID
+
       - name: ankul_test_bash_step_2
         type: bash
         setup:
