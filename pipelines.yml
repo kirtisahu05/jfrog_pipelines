@@ -28,7 +28,7 @@ pipelines:
         type: bash
         configuration:
           affinityGroup: testgroup
-          nodePool: testpool_2
+          nodePool: testpool
         triggeredBy:
           resources:
             - ankul_sample_node
