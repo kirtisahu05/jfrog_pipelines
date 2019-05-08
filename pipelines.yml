@@ -26,8 +26,6 @@ pipelines:
 
       - name: step_2
         type: bash
-        configuration:
-          affinityGroup: testgroup
         triggeredBy:
           resources:
             - ankul_sample_node
