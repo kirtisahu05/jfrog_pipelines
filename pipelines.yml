@@ -27,8 +27,7 @@ pipelines:
       - name: step_2
         type: bash
         configuration:
-          timeoutMS: 12
-          affinityGroup: testgroup_2
+          affinityGroup: testgroup
           nodePool: testpool
         triggeredBy:
           resources:
