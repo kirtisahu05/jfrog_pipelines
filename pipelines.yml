@@ -26,6 +26,8 @@ pipelines:
 
       - name: step_2
         type: bash
+        configuration:
+          timeoutMS: 12
         triggeredBy:
           resources:
             - ankul_sample_node
