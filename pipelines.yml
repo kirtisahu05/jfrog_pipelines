@@ -14,9 +14,6 @@ pipelines:
     steps:
       - name: step_1
         type: bash
-        configuration:
-          affinityGroup: testgroup
-          nodePool: testpool
         triggeredBy:
           resources:
             - ankul_sample_node
@@ -26,9 +23,6 @@ pipelines:
 
       - name: step_2
         type: bash
-        configuration:
-          affinityGroup: testgroup
-          nodePool: testpool_2
         triggeredBy:
           resources:
             - ankul_sample_node
