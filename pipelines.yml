@@ -14,21 +14,24 @@ pipelines:
     steps:
       - name: step_1
         type: bash
+        configuration:
+          affinityGroup: testgroup
+          nodePool: testpool
         triggeredBy:
           resources:
             - ankul_sample_node
         execution:
           onExecute:
             - echo "executing test bash step pipe_1_step_1..."
-            
-            
-  - name: test_pipeline_2
-    steps:
-      - name: step_1
+
+      - name: step_2
         type: bash
+        configuration:
+          affinityGroup: testgroup
+          nodePool: testpool
         triggeredBy:
           resources:
             - ankul_sample_node
         execution:
           onExecute:
-            - echo "executing test bash pipe_2_step_1..."  
+            - echo "executing test bash pipe_2_step_1..."
