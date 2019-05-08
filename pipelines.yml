@@ -28,6 +28,8 @@ pipelines:
         type: bash
         configuration:
           timeoutMS: 12
+          affinityGroup: testgroup_2
+          nodePool: testpool
         triggeredBy:
           resources:
             - ankul_sample_node
