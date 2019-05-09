@@ -73,16 +73,13 @@ pipelines:
       - name: job2
         type: bash
         configuration:
-          nodePool: non_default_cluster_2
+          nodePool: non_default_cluster
         setup:
           runtime:
             type: image
             image:
              auto:
-               language: java 
-               versions:
-                 - 1.01.1
-
+               language: nodeJs
         triggeredBy:
           steps:
             - build
