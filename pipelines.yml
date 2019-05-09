@@ -80,6 +80,8 @@ pipelines:
             image:
              auto:
                language: nodeJs
+               versions:
+                 - 8.15.0
         triggeredBy:
           steps:
             - build
