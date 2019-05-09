@@ -76,9 +76,10 @@ pipelines:
           runtime:
             type: image
             image:
-             custom:
-               name: drydock/u16all
-               tag: master
+             auto:
+               language: java 
+               versions:
+                 - 1.01.1
 
         triggeredBy:
           steps:
