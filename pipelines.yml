@@ -72,6 +72,8 @@ pipelines:
 
       - name: job2
         type: bash
+        configuration:
+          nodePool: non_default_cluster
         setup:
           runtime:
             type: image
