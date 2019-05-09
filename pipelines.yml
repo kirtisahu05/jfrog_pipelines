@@ -81,7 +81,7 @@ pipelines:
              auto:
                language: nodeJs
                versions:
-                 - 8.15.0
+                 - 8.15.1
         triggeredBy:
           steps:
             - build
