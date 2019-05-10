@@ -48,6 +48,8 @@ pipelines:
 
       - name: push
         type: bash
+        configuration:
+          priority: 100
         setup:
           runtime:
             type: image
@@ -73,7 +75,7 @@ pipelines:
       - name: job2
         type: bash
         configuration:
-          nodePool: non_default_cluster
+          priority: 10
         setup:
           runtime:
             type: image
