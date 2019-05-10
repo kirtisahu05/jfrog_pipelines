@@ -8,6 +8,15 @@ resources:
         only: master
     initialVersion:
       sha: master
+      
+  - name: file
+    type: file
+    fileLocation: https://s3.somewhere.com/dev_bucket/dir
+    fileName: test.js
+    configuration:
+      integrationName: ankul_github
+    initialVersion:
+      fileDtTm: "some_time_stamp" 
 
 pipelines:
   - name: ci_pipeline
@@ -24,6 +33,7 @@ pipelines:
         triggeredBy:
           resources:
             - app
+            - file
         execution:
           onExecute:
             - ls $res_app_resourcePath/gitRepo
@@ -63,6 +73,8 @@ pipelines:
         triggeredBy:
           steps:
             - test
+        outputResources:
+          - file
         execution:
           onExecute:
             - docker login -u $int_art_username -p $int_art_password $int_art_url
