@@ -13,8 +13,8 @@ pipelines:
     steps:
       - name: test_step
         type: bash
-        requires
-          resources
+        requires:
+          resources:
             - file
         execution:
           onExecute:
