@@ -27,5 +27,5 @@ pipelines:
             - echo "$jsonKey" > key.json
             - gcloud -q auth activate-service-account --key-file "key.json"
             - gcloud config set project "$projectId"
-            - gsutil cp gs://shiptest/discussion.jpeg
+            - gsutil cp gs://shiptest/discussion.jpeg .
             - ls
