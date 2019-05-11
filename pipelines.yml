@@ -19,6 +19,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - echo $int_ankul_gcloud_jsonKey
             - local jsonKey=$int_ankul_gcloud_jsonKey
             - echo $jsonKey
             - local projectId="$( echo "$jsonKey" | jq -r '.project_id' )"
