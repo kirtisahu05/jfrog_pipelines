@@ -20,7 +20,9 @@ pipelines:
           onExecute:
             - printenv
             - echo $int_ankul_gcloud_jsonKey
-            - jsonKey=$int_ankul_gcloud_jsonKey
+            - export INT_NAME=ankul_gcloud
+            - echo int_"$INT_NAME"_jsonKey
+            - jsonKey=$int_"$INT_NAME"_jsonKey
             - echo $jsonKey
             - projectId="$( echo "$jsonKey" | jq -r '.project_id' )"
             - touch key.json
