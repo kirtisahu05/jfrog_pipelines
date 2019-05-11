@@ -14,8 +14,8 @@ pipelines:
       - name: test_step
         type: bash
         requires:
-          resources:
-            - file
+          integrations:
+            - ankul_gcloud
         execution:
           onExecute:
             - printenv
