@@ -20,9 +20,9 @@ pipelines:
           onExecute:
             - printenv
             - echo $int_ankul_gcloud_jsonKey
-            - local jsonKey=$int_ankul_gcloud_jsonKey
+            - jsonKey=$int_ankul_gcloud_jsonKey
             - echo $jsonKey
-            - local projectId="$( echo "$jsonKey" | jq -r '.project_id' )"
+            - projectId="$( echo "$jsonKey" | jq -r '.project_id' )"
             - touch key.json
             - echo "$jsonKey" > key.json
             - gcloud -q auth activate-service-account --key-file "key.json"
