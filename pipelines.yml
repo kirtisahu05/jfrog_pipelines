@@ -1,20 +1,27 @@
 resources:      
-  - name: file
-    type: file
-    fileLocation: s3://strangers-beta/profiles
-    fileName: 1.png
-    configuration:
-      integrationName: ankul_aws
-    initialVersion:
-      fileDtTm: "2019-01-06" 
+#   - name: file
+#     type: file
+#     fileLocation: s3://strangers-beta/profiles
+#     fileName: 1.png
+#     configuration:
+#       integrationName: ankul_aws
+#     initialVersion:
+#       fileDtTm: "2019-01-06" 
       
-  - name: sample_node
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
+#   - name: sample_node
+#     type: gitRepo
+#     repoPath: ankul-shippable/sample_node
+#     configuration:
+#       integrationName: ankul_github
+#     initialVersion:
+#       sha: master
+      
+  - name: internal_webhook
+    type: webhook
     configuration:
-      integrationName: ankul_github
+      integrationName: int_webhook
     initialVersion:
-      sha: master     
+      payload: "key=val key2=val2"      
 
 pipelines:
   - name: ankul_pipeline
@@ -23,7 +30,7 @@ pipelines:
         type: bash
         requires:
           resources:
-            - sample_node
+            - internal_webhook
         execution:
           onExecute:
             - printenv
