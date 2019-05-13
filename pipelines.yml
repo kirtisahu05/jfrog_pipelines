@@ -34,3 +34,5 @@ pipelines:
         execution:
           onExecute:
             - printenv
+        outputResources:
+          - internal_webhook
