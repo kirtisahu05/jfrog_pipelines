@@ -7,6 +7,14 @@ resources:
       integrationName: ankul_aws
     initialVersion:
       fileDtTm: "2019-01-06" 
+      
+  - name: sample_node
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
+    configuration:
+      integrationName: ankul_github
+    initialVersion:
+      sha: master     
 
 pipelines:
   - name: ankul_pipeline
@@ -15,7 +23,7 @@ pipelines:
         type: bash
         requires:
           resources:
-            - file
+            - sample_node
         execution:
           onExecute:
             - printenv
