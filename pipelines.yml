@@ -1,10 +1,10 @@
 resources:      
   - name: file
     type: file
-    fileLocation: gs://bucket_name
-    fileName: test.js
+    fileLocation: s3://strangers-beta/profiles
+    fileName: 1.png
     configuration:
-      integrationName: ankul_gcloud
+      integrationName: ankul_aws
     initialVersion:
       fileDtTm: "2019-01-06" 
 
