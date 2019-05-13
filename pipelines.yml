@@ -9,7 +9,7 @@ resources:
       fileDtTm: "2019-01-06" 
 
 pipelines:
-  - name: ci_pipeline
+  - name: ankul_pipeline
     steps:
       - name: test_step
         type: bash
