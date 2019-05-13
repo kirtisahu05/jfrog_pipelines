@@ -14,20 +14,8 @@ pipelines:
       - name: test_step
         type: bash
         requires:
-          integrations:
-            - ankul_gcloud
+          resources:
+            - file
         execution:
           onExecute:
             - printenv
-            - echo $int_ankul_gcloud_jsonKey
-            - export INT_NAME=ankul_gcloud
-            - echo int_"$INT_NAME"_jsonKey
-            - jsonKey=$(eval echo "$"int_"$INT_NAME"_jsonKey)
-            - echo $jsonKey
-            - projectId="$( echo "$jsonKey" | jq -r '.project_id' )"
-            - touch key.json
-            - echo "$jsonKey" > key.json
-            - gcloud -q auth activate-service-account --key-file "key.json"
-            - gcloud config set project "$projectId"
-            - gsutil cp gs://shiptest/discussion.jpeg .
-            - ls
