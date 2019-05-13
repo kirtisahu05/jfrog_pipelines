@@ -28,7 +28,21 @@ resources:
     configuration:
       integrationName: int_webhook
     initialVersion:
-      payload: "key=val key2=val2"           
+      payload: "key=val key2=val2"  
+      
+  - name: external_webhook
+    type: webhook
+    configuration:
+      integrationName: ext_webhook
+    initialVersion:
+      payload: "key=val key2=val2"     
+      
+  - name: external_webhook_2
+    type: webhook
+    configuration:
+      integrationName: ext_webhook
+    initialVersion:
+      payload: "key=val key2=val2"        
 
 pipelines:
   - name: ankul_pipeline
@@ -38,8 +52,10 @@ pipelines:
         requires:
           resources:
             - internal_webhook
+            - external_webhook
         execution:
           onExecute:
             - printenv
         outputResources:
           - internal_webhook_2
+          - external_webhook_2
