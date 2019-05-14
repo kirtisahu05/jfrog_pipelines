@@ -36,6 +36,7 @@ pipelines:
             - printenv
             - sudo apt-get install tree
             - tree $res_internal_webhook_resourcePath
+            - cat $res_internal_webhook_resourcePath/internal_webhook.env
         outputResources:
           - internal_webhook
           
