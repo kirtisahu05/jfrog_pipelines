@@ -34,6 +34,8 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - sudo apt-get install tree
+            - tree $res_internal_webhook_resourcePath
         outputResources:
           - internal_webhook
           
