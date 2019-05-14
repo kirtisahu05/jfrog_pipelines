@@ -36,7 +36,7 @@ pipelines:
             - printenv
             - sudo apt-get install tree
             - tree $res_external_webhook_resourcePath
-            - cat $res_external_webhook_resourcePath/internal_webhook.env
+            - cat $res_external_webhook_resourcePath/external_webhook.env
             - echo "KEY1=VALUE1" >> $res_external_webhook_resourcePath/external_webhook.env
             - cat $res_external_webhook_resourcePath/external_webhook.env
         outputResources:
