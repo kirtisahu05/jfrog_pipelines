@@ -49,9 +49,9 @@ pipelines:
     steps:
       - name: test_step
         type: bash
-        requires:
-          resources:
-            - internal_webhook
+#         requires:
+#           resources:
+#             - internal_webhook
         triggeredBy:
           resources:
             - internal_webhook_2
