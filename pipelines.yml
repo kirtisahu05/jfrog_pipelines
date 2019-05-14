@@ -29,14 +29,19 @@ pipelines:
     steps:
       - name: test_step
         type: bash
-#         requires:
-#           resources:
-#             - internal_webhook
-#         triggeredBy:
-#           resources:
-#             - internal_webhook_2
         execution:
           onExecute:
             - printenv
         outputResources:
           - internal_webhook
+          
+  - name: ankul_pipeline_2
+    steps:
+      - name: test_step_2
+        type: bash
+        requires:
+          resources:
+            - internal_webhook
+        execution:
+          onExecute:
+            - printenv
