@@ -29,6 +29,8 @@ pipelines:
     steps:
       - name: test_step
         type: bash
+        configuration:
+          nodePool: ankul_u16_nodes
         execution:
           onExecute:
             - printenv
@@ -39,6 +41,8 @@ pipelines:
     steps:
       - name: test_step_2
         type: bash
+        configuration:
+          nodePool: ankul_u16_nodes
         requires:
           resources:
             - internal_webhook
