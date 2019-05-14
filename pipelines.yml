@@ -37,6 +37,8 @@ pipelines:
             - sudo apt-get install tree
             - tree $res_internal_webhook_resourcePath
             - cat $res_internal_webhook_resourcePath/internal_webhook.env
+            - echo "KEY1=VALUE1" >> $res_internal_webhook_resourcePath/internal_webhook.env
+            - cat $res_internal_webhook_resourcePath/internal_webhook.env
         outputResources:
           - internal_webhook
           
