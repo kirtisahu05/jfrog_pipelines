@@ -16,10 +16,10 @@ resources:
 #     initialVersion:
 #       sha: master
       
-  - name: internal_webhook
+  - name: external_webhook
     type: webhook
     configuration:
-      integrationName: int_webhook
+      integrationName: ext_webhook
     initialVersion:
       payload: "key=val key2=val2"     
            
@@ -35,22 +35,9 @@ pipelines:
           onExecute:
             - printenv
             - sudo apt-get install tree
-            - tree $res_internal_webhook_resourcePath
-            - cat $res_internal_webhook_resourcePath/internal_webhook.env
-            - echo "KEY1=VALUE1" >> $res_internal_webhook_resourcePath/internal_webhook.env
-            - cat $res_internal_webhook_resourcePath/internal_webhook.env
+            - tree $res_external_webhook_resourcePath
+            - cat $res_external_webhook_resourcePath/internal_webhook.env
+            - echo "KEY1=VALUE1" >> $res_external_webhook_resourcePath/external_webhook.env
+            - cat $res_external_webhook_resourcePath/external_webhook.env
         outputResources:
-          - internal_webhook
-          
-  - name: ankul_pipeline_2
-    steps:
-      - name: test_step_2
-        type: bash
-        configuration:
-          nodePool: ankul_u16_nodes
-        requires:
-          resources:
-            - internal_webhook
-        execution:
-          onExecute:
-            - printenv
+          - external_webhook
