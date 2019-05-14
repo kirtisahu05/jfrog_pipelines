@@ -52,10 +52,11 @@ pipelines:
         requires:
           resources:
             - internal_webhook
-            - external_webhook
+        triggeredBy:
+          resources:
+            - internal_webhook_2
         execution:
           onExecute:
             - printenv
         outputResources:
-          - internal_webhook_2
           - external_webhook_2
