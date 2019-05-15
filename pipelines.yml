@@ -41,5 +41,4 @@ pipelines:
           onExecute:
             - printenv
         outputResources:
-          resources:
-            - state
+          - state
