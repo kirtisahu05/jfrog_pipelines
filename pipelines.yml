@@ -27,19 +27,19 @@ resources:
       KEY_2: value_2     
 
 pipelines:
-#   - name: ankul_pipeline
-#     steps:
-#       - name: step
-#         type: bash
-#         requires:
-#           resources:
-#             - state
-#         triggeredBy:
-#           resources:
-#             - sample_node
-#         execution:
-#           onExecute:
-#             - printenv
-#         outputResources:
-#           - state
-#           - sample_node
+  - name: ankul_pipeline
+    steps:
+      - name: step
+        type: bash
+        requires:
+          resources:
+            - state
+        triggeredBy:
+          resources:
+            - sample_node
+        execution:
+          onExecute:
+            - printenv
+        outputResources:
+          - state
+          - sample_node
