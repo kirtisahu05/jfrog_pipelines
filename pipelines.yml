@@ -16,33 +16,27 @@ resources:
     initialVersion:
       sha: master
       
-  - name: external_webhook
-    type: webhook
-    configuration:
-      integrationName: ext_webhook
+  - name: state
+    type: state
     initialVersion:
-      payload: "key=val key2=val2"     
-           
+      KEY: value
+      
+  - name: state_2
+    type: state
+    initialVersion:
+      KEY_2: value_2     
 
 pipelines:
   - name: ankul_pipeline
     steps:
-      - name: test_step
+      - name: step
         type: bash
-        configuration:
-          nodePool: ankul_u16_nodes
-        setup:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: nodejs
-                versions:
-                  - 8.15.0          
         requires:
           resources:
-            - sample_node
+            - state
+        triggeredBy:
+          resources:
+            - state_2
         execution:
           onExecute:
             - printenv
-            - node -v
