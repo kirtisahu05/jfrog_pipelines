@@ -8,13 +8,13 @@ resources:
 #     initialVersion:
 #       fileDtTm: "2019-01-06" 
       
-#   - name: sample_node
-#     type: gitRepo
-#     repoPath: ankul-shippable/sample_node
-#     configuration:
-#       integrationName: ankul_github
-#     initialVersion:
-#       sha: master
+  - name: sample_node
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
+    configuration:
+      integrationName: ankul_github
+    initialVersion:
+      sha: master
       
   - name: external_webhook
     type: webhook
@@ -39,6 +39,9 @@ pipelines:
                 language: nodejs
                 versions:
                   - 8.15.0          
+        requires:
+          resources:
+            - sample_node
         execution:
           onExecute:
             - printenv
