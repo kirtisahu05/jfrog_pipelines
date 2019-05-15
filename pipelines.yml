@@ -46,6 +46,9 @@ pipelines:
           
       - name: step_2
         type: bash
+        requires:
+          resources:
+            - state
         triggeredBy:
           resources:
             - sample_node
@@ -55,4 +58,5 @@ pipelines:
           onExecute:
             - printenv
         outputResources:
-          - sample_node            
+          - sample_node  
+          - state
