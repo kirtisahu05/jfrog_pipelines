@@ -54,3 +54,5 @@ pipelines:
         execution:
           onExecute:
             - printenv
+        outputResources:
+          - sample_node            
