@@ -43,3 +43,14 @@ pipelines:
         outputResources:
           - state
           - sample_node
+          
+      - name: step_2
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+          steps:
+            - step
+        execution:
+          onExecute:
+            - printenv
