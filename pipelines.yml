@@ -42,3 +42,4 @@ pipelines:
             - printenv
         outputResources:
           - state
+          - sample_node
