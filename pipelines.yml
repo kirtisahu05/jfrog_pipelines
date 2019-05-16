@@ -26,7 +26,7 @@ pipelines:
         triggeredBy:
           steps:
             - step_1
-#             - step_3
+            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_2..."
