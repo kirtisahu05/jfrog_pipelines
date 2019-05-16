@@ -1,14 +1,20 @@
 pipelines:
   - name: pipeline
     steps:
-       - name: step_without_runtime
+       - name: none_language
          type: bash
+         setup:
+           runtime:
+             type: image
+             image:
+               auto:
+                 language: none            
          execution:
            onExecute:
-             - echo hello_world!
+             - echo TEST_FOR_NONE
              - node -v
 
-       - name: step_with_image
+       - name: selected_version
          type: bash
          setup:
            runtime:
@@ -17,8 +23,21 @@ pipelines:
                auto:
                  language: nodejs
                  versions:
-                   - 8.16.0           
+                   - 8.16.0                      
          execution:
            onExecute:
-             - echo hello_world!
+             - echo - echo TEST_FOR_SELECTED_VERSION
              - node -v
+             
+       - name: default_version
+         type: bash
+         setup:
+           runtime:
+             type: image
+             image:
+               auto:
+                 language: nodejs                  
+         execution:
+           onExecute:
+             - echo - echo TEST_FOR_DEFAULT_VERSION
+             - node -v             
