@@ -66,15 +66,15 @@ pipelines:
             - step_1
         execution:
           onExecute:
-            - echo "executing test bash step_3..."                
-
-  - name: pipeline_2
-    steps:
-      - name: step_1
+            - echo "executing test bash step_3..."    
+            
+      - name: step_3
         type: bash
         triggeredBy:
-          resources:
-            - sample_node
+          steps:
+            - step_1
         execution:
           onExecute:
-            - echo "executing test bash step_1..."
+            - echo "executing test bash step_3..."                
+
+
