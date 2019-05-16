@@ -26,11 +26,19 @@ pipelines:
         triggeredBy:
           steps:
             - step_1
-            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_2..."
-            
+
+      - name: step_3
+        type: bash
+        triggeredBy:
+          steps:
+            - step_2
+        execution:
+          onExecute:
+            - echo "executing test bash step_3..."  
+
   - name: pipeline_2
     steps:
       - name: step_1
@@ -58,4 +66,4 @@ pipelines:
             - step_1
         execution:
           onExecute:
-            - echo "executing test bash step_2..."                
+            - echo "executing test bash step_3..."                
