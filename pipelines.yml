@@ -14,7 +14,7 @@ pipelines:
     steps:
       - name: step_1
         type: bash
-        triggeredBy:
+        requires:
           resources:
             - sample_node
         execution:
