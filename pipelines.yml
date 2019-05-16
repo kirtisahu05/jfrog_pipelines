@@ -38,6 +38,15 @@ pipelines:
         execution:
           onExecute:
             - echo "executing test bash step_3..."  
+            
+      - name: sadasdas##@31
+        type: bash
+        triggeredBy:
+          steps:
+            - step_2
+        execution:
+          onExecute:
+            - echo "executing test bash step_3..."              
 
   - name: pipeline_2
     steps:
