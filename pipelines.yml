@@ -14,9 +14,8 @@ pipelines:
     steps:
       - name: step
         type: bash
-        triggeredBy:
-          resources:
-            - sample_node
+        outputResources:
+          - sample_node
         execution:
           onExecute:
             - echo "executing test bash step..."
