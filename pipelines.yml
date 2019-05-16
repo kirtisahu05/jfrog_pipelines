@@ -10,12 +10,42 @@ resources:
       sha: master
 
 pipelines:
-  - name: pipeline
+  - name: pipeline_1
     steps:
-      - name: step
+      - name: step_1
         type: bash
-        outputResources:
-          - sample_node
+        triggeredBy:
+          resources:
+            - sample_node
         execution:
           onExecute:
-            - echo "executing test bash step..."
+            - echo "executing test bash step_1..."
+
+      - name: step_2
+        type: bash
+        triggeredBy:
+          steps:
+            - step_1
+        execution:
+          onExecute:
+            - echo "executing test bash step_2..."
+            
+  - name: pipeline_2
+    steps:
+      - name: step_1
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+        execution:
+          onExecute:
+            - echo "executing test bash step_1..."
+
+      - name: step_2
+        type: bash
+        triggeredBy:
+          steps:
+            - step_1
+        execution:
+          onExecute:
+            - echo "executing test bash step_2..."            
