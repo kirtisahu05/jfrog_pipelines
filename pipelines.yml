@@ -7,17 +7,7 @@ resources:
       branches:
         only: master
     initialVersion:
-      sha: master
-      
-  - name: sample_node
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
-    configuration:
-      integrationName: ankul_github
-      branches:
-        only: master
-    initialVersion:
-      sha: master      
+      sha: master    
 
 pipelines:
   - name: pipeline_1
@@ -77,3 +67,14 @@ pipelines:
         execution:
           onExecute:
             - echo "executing test bash step_3..."                
+
+  - name: pipeline_2
+    steps:
+      - name: step_1
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+        execution:
+          onExecute:
+            - echo "executing test bash step_1..."
