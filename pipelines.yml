@@ -8,6 +8,16 @@ resources:
         only: master
     initialVersion:
       sha: master
+      
+  - name: sample_node
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
+    configuration:
+      integrationName: ankul_github
+      branches:
+        only: master
+    initialVersion:
+      sha: master      
 
 pipelines:
   - name: pipeline_1
