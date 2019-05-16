@@ -21,14 +21,14 @@ pipelines:
           onExecute:
             - echo "executing test bash step_1..."
 
-#       - name: step_2
-#         type: bash
-#         triggeredBy:
-#           steps:
-#             - step_1
-#         execution:
-#           onExecute:
-#             - echo "executing test bash step_2..."
+      - name: step_2
+        type: bash
+        triggeredBy:
+          steps:
+            - step_1
+        execution:
+          onExecute:
+            - echo "executing test bash step_2..."
 
       - name: step_3
         type: bash
