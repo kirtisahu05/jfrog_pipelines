@@ -12,6 +12,8 @@ pipelines:
     steps:
       - name: test_step
         type: bash
+        configuration:
+          nodePool: ankul_u16_nodes
         triggeredBy:
           resources:
             - nginx
