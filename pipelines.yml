@@ -1,31 +1,20 @@
 resources:
-  - name: ankul_sample_node
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
+  - name: nginx
+    type: image
+    imageName: ankul/nginx
     configuration:
-      integrationName: ankul_github
-      branches:
-        only: master
+      integrationName: ankul_docker_hub
     initialVersion:
-      sha: master
+      imageTag: random
 
 pipelines:
-  - name: test_pipeline_1
+  - name: ankul_pipeline
     steps:
-      - name: step_1
+      - name: test_step
         type: bash
         triggeredBy:
           resources:
-            - ankul_sample_node
+            - nginx
         execution:
           onExecute:
-            - echo "executing test bash step pipe_1_step_1..."
-
-      - name: step_2
-        type: bash
-        triggeredBy:
-          resources:
-            - ankul_sample_node
-        execution:
-          onExecute:
-            - echo "executing test bash pipe_2_step_1..."
+            - echo "executing test bash step..."
