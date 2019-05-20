@@ -10,7 +10,7 @@ pipelines:
     steps:
       - name: step_1
         type: bash
-        triggeredBy:
+        requires:
           resources:
             - state
         execution:
@@ -21,7 +21,7 @@ pipelines:
             
       - name: step_2
         type: bash
-        triggeredBy:
+        requires:
           resources:
             - state
         execution:
