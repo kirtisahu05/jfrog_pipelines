@@ -1,5 +1,5 @@
 resources:
-  - name: app1
+  - name: sample_node
     type: gitRepo
     repoPath: ankul-shippable/sample_node
     configuration:
@@ -25,7 +25,7 @@ pipelines:
               myLastName: KUMAR
               myMiddleName: NONE
           resources:
-            - app1
+            - sample_node
           integrations:
             - art
         execution:
