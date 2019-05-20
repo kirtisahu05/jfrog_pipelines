@@ -1,5 +1,5 @@
 resources:
-  - name: sample_node
+  - name: app1
     type: gitRepo
     repoPath: ankul-shippable/sample_node
     configuration:
@@ -7,73 +7,86 @@ resources:
       branches:
         only: master
     initialVersion:
-      sha: master  
-      
-  - name: sampl#22@&32sa
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
-    configuration:
-      integrationName: ankul_github
-      branches:
-        only: master
-    initialVersion:
-      sha: master        
+      sha: master
 
 pipelines:
-  - name: pipeline_1
+
+  - name: test_pipeline
     steps:
-      - name: step_1
+      - name: test_func
         type: bash
+        configuration:
+          affinityGroup: build
+          nodePool: kermit_centos_pool
+        setup:
+          environmentVariables:
+            normal:
+              myFirstName: ANKUL
+              myLastName: KUMAR
+            encrypted:
+              myMiddleName: P0MA0FvspdmtybGshqsaGHwisg+oSu8DcLA7biLiZGhoSgrKpua4yZHqy5dWPakhUXZrvqd/TQGGR6TvIFqKcPrkG1aCzhVIScDL6ZuWGgvoUKqeAyppnAnRMh17t2hCmpvgJrd9+hmeqRprGL+CBsDnzpjQ4plIogt4tPpJq8CnDqMVTzKvVuafJhPen7fBDCJ/SuK1co7cdDoayziNI8ARFvWVSBt2OEE73qtsOK66F+Jm51R/HKJplCSl1/CVbJepVXf3uFoC6WOBygv7fpSxaPSrV60JIt02CYfstVlWFk48oKcmaJcldRbMmlhBHiGjdX9VduGUF7QTQNDE8w==
         requires:
           resources:
-            - sample_node
+            - app1
+          integrations:
+            - art
         execution:
           onExecute:
-            - echo "executing test bash step_1..."
+            - echo $myFirstName
+            - echo $myLastName
+            - echo $myMiddleName
+            - printenv
 
-      - name: step_2
+
+      - name: test_func_next
+        type: bash
+        configuration:
+          affinityGroup: build
+          nodePool: kermit_centos_pool
+        triggeredBy:
+          steps:
+            - test_func
+        execution:
+          onExecute:
+            - printenv
+
+
+      - name: parallel_1
         type: bash
         triggeredBy:
           steps:
-            - step_1
+            - test_func_next
         execution:
           onExecute:
-            - echo "executing test bash step_2..."
+            - printenv
+            - echo $imageTag
 
-      - name: step_3
+
+      - name: parallel_2
         type: bash
         triggeredBy:
           steps:
-            - step_2
+            - test_func_next
         execution:
           onExecute:
-            - echo "executing test bash step_3..."               
+            - printenv
 
-  - name: pipeline_2
-    steps:
-      - name: step_1
-        type: bash
-        triggeredBy:
-          resources:
-            - sample_node
-        execution:
-          onExecute:
-            - echo "executing test bash step_1..."
-
-      - name: step_2
+      - name: parallel_3
         type: bash
         triggeredBy:
           steps:
-            - step_1
+            - test_func_next
         execution:
           onExecute:
-            - echo "executing test bash step_2..."    
-            
-      - name: step_3
+            - printenv
+
+      - name: final_step
         type: bash
         triggeredBy:
           steps:
-            - step_1
+            - parallel_2
+            - parallel_1
+            - parallel_3
         execution:
           onExecute:
-            - echo "executing test bash step_3..."
+            - printenv
