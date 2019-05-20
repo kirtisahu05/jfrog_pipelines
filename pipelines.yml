@@ -10,8 +10,7 @@ resources:
       sha: master
 
 pipelines:
-
-  - name: test_pipeline
+  - name: test_pipeline_2
     steps:
       - name: test_func
         type: bash
