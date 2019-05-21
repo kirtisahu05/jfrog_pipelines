@@ -35,15 +35,7 @@ resources:
       integrationName: ankul_github
     initialVersion:
       payload: "asd"
-
-  - name: clusterRes_jTest
-    type: cluster
-    configuration:
-      integrationName: ankul_github
-      bastionHostIP: 1.2.3.4
-      bastionUser: sshUser
-      bastionIntegrationName: sshKeyIntegration
-
+  
 pipelines:
   - name: jTest_pipeline
     setup:
