@@ -4,8 +4,6 @@ resources:
     repoPath: ankul-shippable/sample_node
     configuration:
       integrationName: ankul_github
-      branches:
-        except: random
     initialVersion:
       sha: master
 
