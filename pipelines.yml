@@ -5,7 +5,7 @@ resources:
     configuration:
       integrationName: ankul_github
       branches:
-        only: master
+        except: random
     initialVersion:
       sha: master   
 
