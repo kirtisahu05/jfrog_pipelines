@@ -7,73 +7,16 @@ resources:
       branches:
         only: master
     initialVersion:
-      sha: master  
-      
-  - name: sampl#22@&32sa
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
-    configuration:
-      integrationName: ankul_github
-      branches:
-        only: master
-    initialVersion:
-      sha: master        
+      sha: master   
 
 pipelines:
   - name: pipeline_1
     steps:
       - name: step_1
         type: bash
-        requires:
-          resources:
-            - sample_node
-        execution:
-          onExecute:
-            - echo "executing test bash step_1..."
-
-      - name: step_2
-        type: bash
-        triggeredBy:
-          steps:
-            - step_1
-        execution:
-          onExecute:
-            - echo "executing test bash step_2..."
-
-      - name: step_3
-        type: bash
-        triggeredBy:
-          steps:
-            - step_2
-        execution:
-          onExecute:
-            - echo "executing test bash step_3..."               
-
-  - name: pipeline_2
-    steps:
-      - name: step_1
-        type: bash
         triggeredBy:
           resources:
             - sample_node
         execution:
           onExecute:
             - echo "executing test bash step_1..."
-
-      - name: step_2
-        type: bash
-        triggeredBy:
-          steps:
-            - step_1
-        execution:
-          onExecute:
-            - echo "executing test bash step_2..."    
-            
-      - name: step_3
-        type: bash
-        triggeredBy:
-          steps:
-            - step_1
-        execution:
-          onExecute:
-            - echo "executing test bash step_3..."
