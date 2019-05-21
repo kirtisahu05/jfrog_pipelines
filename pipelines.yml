@@ -73,6 +73,7 @@ pipelines:
           - file_res_jTest
           - stateResource_jTest
           - image_res_jTest
+          
       - name: img_test_push
         type: bash
         triggeredBy:
@@ -92,3 +93,12 @@ pipelines:
         triggeredBy:
           resources:
             - image_res_jTest
+            
+            
+      - name: img_test_push_2
+        type: bash
+        execution:
+          onExecute:
+            - printenv
+            - write_output image_res_jTest imageTag=master
+        
