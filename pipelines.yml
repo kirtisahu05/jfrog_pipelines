@@ -7,16 +7,97 @@ resources:
       branches:
         except: random
     initialVersion:
-      sha: master   
+      sha: master
+
+  - name: file_res_jTest
+    type: file
+    fileLocation: https://raw.githubusercontent.com/ChaitanyaVootla/jfrogTest/master/test.yml
+    fileName: shippable.yml
+    configuration:
+      integrationName: ankul_github
+    initialVersion:
+      fileDtTm: random_value
+
+  - name: image_res_jTest
+    type: image
+    imageName: "library/nginx"
+    configuration:
+      integrationName: ankul_github
+    initialVersion:
+      imageTag: latest
+
+  - name: stateResource_jTest
+    type: state
+
+  - name: webhookRes_jTest
+    type: webhook
+    configuration:
+      integrationName: ankul_github
+    initialVersion:
+      payload: "asd"
+
+  - name: clusterRes_jTest
+    type: cluster
+    configuration:
+      integrationName: ankul_github
+      bastionHostIP: 1.2.3.4
+      bastionUser: sshUser
+      bastionIntegrationName: sshKeyIntegration
 
 pipelines:
-  - name: pipeline_1
+  - name: jTest_pipeline
+    setup:
+      runtime: onHost
     steps:
-      - name: step_1
+      - name: step_jTest
         type: bash
+        configuration:
+          affinityGroup: test_group
+        setup:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: java
+                versions:
+                  - 1
+            custom:
+              name: test
+              tag:  test
+              options: test
+        requires:
+          integrations:
+            - ankul_github
+          resources:
+            - stateResource_jTest
         triggeredBy:
           resources:
             - sample_node
+            - webhookRes_jTest
+            - clusterRes_jTest
         execution:
           onExecute:
-            - echo "executing test bash step_1..."
+            - echo "executing..."
+        outputResources:
+          - file_res_jTest
+          - stateResource_jTest
+          - image_res_jTest
+      - name: img_test_push
+        type: bash
+        triggeredBy:
+          steps:
+            - step_jTest
+        execution:
+          onExecute:
+            - printenv
+            - write_output image_res_jTest imageTag=master
+        outputResources:
+          - image_res_jTest
+      - name: img_read
+        type: bash
+        execution:
+          onExecute:
+            - printenv
+        triggeredBy:
+          resources:
+            - image_res_jTest
