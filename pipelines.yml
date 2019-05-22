@@ -17,27 +17,27 @@ resources:
       sha: master   
 
 pipelines:
-#   - name: ankul_pipeline_2
-#     steps:
-#       - name: step_10
-#         type: bash
-#         triggeredBy:
-#           resources:
-#             - sample_node
-#         execution:
-#           onExecute:
-#             - printenv
+  - name: ankul_pipeline_2
+    steps:
+      - name: step_10
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+        execution:
+          onExecute:
+            - printenv
           
-#       - name: step_12
-#         type: bash
-#         triggeredBy:
-#           resources:
-#             - sample_node
-#           steps:
-#             - step_10
-#         execution:
-#           onExecute:
-#             - printenv
+      - name: step_12
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+          steps:
+            - step_10
+        execution:
+          onExecute:
+            - printenv
             
   - name: ankul_pipeline
     steps:
@@ -61,14 +61,14 @@ pipelines:
 #           onExecute:
 #             - printenv
             
-#       - name: step_3
-#         type: bash
-#         triggeredBy:
-#           resources:
-#             - sample_node
-#           steps:
-#             - step_2
-#         execution:
-#           onExecute:
-#             - printenv            
+      - name: step_3
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+          steps:
+            - step_2
+        execution:
+          onExecute:
+            - printenv            
             
