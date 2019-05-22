@@ -33,8 +33,6 @@ pipelines:
         triggeredBy:
           resources:
             - sample_node
-          steps:
-            - step_1
         execution:
           onExecute:
             - printenv
