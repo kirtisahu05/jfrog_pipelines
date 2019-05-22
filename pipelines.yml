@@ -14,49 +14,25 @@ resources:
     configuration:
       integrationName: ankul_github
     initialVersion:
-      sha: master
-      
-  - name: state
-    type: state
-    initialVersion:
-      KEY: value
-      
-  - name: state_2
-    type: state
-    initialVersion:
-      KEY_2: value_2     
+      sha: master   
 
 pipelines:
   - name: ankul_pipeline
     steps:
-      - name: step
+      - name: step_1
         type: bash
-        requires:
-          resources:
-            - state
         triggeredBy:
           resources:
             - sample_node
         execution:
           onExecute:
             - printenv
-        outputResources:
-          - state
-          - sample_node
           
       - name: step_2
         type: bash
-        requires:
-          resources:
-            - state
         triggeredBy:
           resources:
             - sample_node
-          steps:
-            - step
         execution:
           onExecute:
             - printenv
-        outputResources:
-          - sample_node  
-          - state
