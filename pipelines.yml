@@ -50,16 +50,16 @@ pipelines:
           onExecute:
             - printenv
           
-#       - name: step_2
-#         type: bash
-#         triggeredBy:
-#           resources:
-#             - sample_node
-#           steps:
-#             - step_1
-#         execution:
-#           onExecute:
-#             - printenv
+      - name: step_2
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+          steps:
+            - step_1
+        execution:
+          onExecute:
+            - printenv
             
       - name: step_3
         type: bash
