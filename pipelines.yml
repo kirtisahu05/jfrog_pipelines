@@ -100,22 +100,22 @@ pipelines:
             - write_output image_res_jTest imageTag=master
         
 
-  - name: ankul_pipelines_2
-    steps:
-      - name: step_1
-        type: bash
-        requires:
-          resources:
-            - image_res_jTest
-        execution:
-          onExecute:
-            - printenv
+#   - name: ankul_pipelines_2
+#     steps:
+#       - name: step_1
+#         type: bash
+#         requires:
+#           resources:
+#             - image_res_jTest
+#         execution:
+#           onExecute:
+#             - printenv
             
-      - name: step_2
-        type: bash
-        requires:
-          resources:
-            - image_res_jTest
-        execution:
-          onExecute:
-            - printenv            
+#       - name: step_2
+#         type: bash
+#         requires:
+#           resources:
+#             - image_res_jTest
+#         execution:
+#           onExecute:
+#             - printenv            
