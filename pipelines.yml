@@ -111,11 +111,11 @@ pipelines:
           onExecute:
             - printenv
             
-#       - name: step_2
-#         type: bash
-#         requires:
-#           resources:
-#             - image_res_jTest
-#         execution:
-#           onExecute:
-#             - printenv            
+      - name: step_2
+        type: bash
+        requires:
+          resources:
+            - image_res_jTest
+        execution:
+          onExecute:
+            - printenv            
