@@ -95,6 +95,9 @@ pipelines:
             
       - name: img_test_push_2
         type: bash
+        requires:
+          resources:
+            - image_res_jTest
         execution:
           onExecute:
             - printenv
