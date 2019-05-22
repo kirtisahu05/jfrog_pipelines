@@ -1,74 +1,69 @@
-resources:      
-#   - name: file
-#     type: file
-#     fileLocation: s3://strangers-beta/profiles
-#     fileName: 1.png
-#     configuration:
-#       integrationName: ankul_aws
-#     initialVersion:
-#       fileDtTm: "2019-01-06" 
-      
-  - name: sample_node
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
-    configuration:
-      integrationName: ankul_github
-    initialVersion:
-      sha: master   
-
 pipelines:
-  - name: ankul_pipeline_2
-    steps:
-      - name: step_10
+  - name: runtime
+    setup: 
+      environmentVariables:
+        readOnly:
+          Number: 27   
+      runtime:       
+        type: 
+        image:
+          auto:
+            language: nodejs
+            versions:
+              - 10.15.3
+#           custom:
+#             name: "drydock/u16node"
+#             tag: "master"
+#             options: "--env VIJAY=kumar"
+    steps:    
+      - name: test1
         type: bash
+        setup:
+          runtime:
+            type: image
+            image:
+             custom:
+               name: drydock/u16node
+               tag: master
         triggeredBy:
-          resources:
-            - sample_node
-        execution:
-          onExecute:
-            - printenv
-          
-      - name: step_12
-        type: bash
-        triggeredBy:
-          resources:
-            - sample_node
+#           resources:
+#             - test
           steps:
-            - step_10
+            - test3
         execution:
           onExecute:
+            - echo "hi"
             - printenv
-            
-  - name: ankul_pipeline
-    steps:
-      - name: step_1
-        type: bash
+            - nvm list
+
+      - name: test2
+        type: bash   
+#         setup:
+#           runtime:
+#             type: image
+#             image:
+#              custom:
+#                name: 
+#                tag: master
         triggeredBy:
-          resources:
-            - sample_node
-        execution:
-          onExecute:
-            - printenv
-          
-      - name: step_2
-        type: bash
-        triggeredBy:
-          resources:
-            - sample_node
           steps:
-            - step_1
+            - test1
         execution:
           onExecute:
-            - printenv
-            
-      - name: step_3
-        type: bash
+            - echo "test2"
+
+      - name: test3
+        type: bash  
+#         setup:
+#           runtime:
+#             type: image
+#             image:
+#              custom:
+#                name: drydock/u16node
+#                tag: master
         triggeredBy:
-          resources:
-            - sample_node
           steps:
-            - step_2
+            - test2
         execution:
           onExecute:
-            - printenv            
-            
+            - echo "Test3"
