@@ -61,14 +61,14 @@ pipelines:
 #           onExecute:
 #             - printenv
             
-      - name: step_3
-        type: bash
-        triggeredBy:
-          resources:
-            - sample_node
-          steps:
-            - step_2
-        execution:
-          onExecute:
-            - printenv            
+#       - name: step_3
+#         type: bash
+#         triggeredBy:
+#           resources:
+#             - sample_node
+#           steps:
+#             - step_2
+#         execution:
+#           onExecute:
+#             - printenv            
             
