@@ -9,6 +9,17 @@ resources:
     initialVersion:
       sha: master      
 
+  - name: sample_node_2
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
+    configuration:
+      integrationName: ankul_github
+      branches:
+        except: random
+    initialVersion:
+      sha: master      
+
+
 pipelines:
   - name: pipeline_1
     steps:
@@ -34,7 +45,7 @@ pipelines:
           onExecute:
             - echo "executing test bash step_2..."
         outputResources:
-          - sample_node
+          - sample_node_2
           
       - name: step_3
         type: bash
