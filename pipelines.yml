@@ -30,6 +30,7 @@ pipelines:
             - sample_node
           steps:
             - step_3
+            - step_2
         execution:
           onExecute:
             - echo "executing test bash step_1..."
@@ -41,19 +42,22 @@ pipelines:
             - sample_node
           steps:
             - step_1
+            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_2..."
         outputResources:
           - sample_node_2
+          - sample_node
           
       - name: step_3
         type: bash
         triggeredBy:
           resources:
             - sample_node
-#           steps:
-#             - step_2
+          steps:
+            - step_2
+            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_3..."        
