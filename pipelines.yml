@@ -7,23 +7,42 @@ resources:
       branches:
         except: random
     initialVersion:
-      sha: master   
+      sha: master      
 
 pipelines:
   - name: pipeline_1
     steps:
       - name: step_1
         type: bash
-        setup:
-          environmentVariables:
-            normal:
-              ENV3: value3
-              ENV4: value4
         triggeredBy:
           resources:
             - sample_node
+          steps:
+            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_1..."
+   
+      - name: step_2
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+          steps:
+            - step_1
+        execution:
+          onExecute:
+            - echo "executing test bash step_2..."
         outputResources:
           - sample_node
+          
+      - name: step_3
+        type: bash
+        triggeredBy:
+          resources:
+            - sample_node
+          steps:
+            - step_2
+        execution:
+          onExecute:
+            - echo "executing test bash step_3..."        
