@@ -14,6 +14,11 @@ pipelines:
     steps:
       - name: step_1
         type: bash
+        setup:
+          environmentVariables:
+            normal:
+              ENV3: value3
+              ENV4: value4
         triggeredBy:
           resources:
             - sample_node
@@ -23,6 +28,11 @@ pipelines:
 
       - name: step_2
         type: bash
+        setup:
+          environmentVariables:
+            normal:
+              ENV5: value5
+              ENV6: value6       
         triggeredBy:
           resources:
             - sample_node
