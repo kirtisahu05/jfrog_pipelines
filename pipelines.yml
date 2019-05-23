@@ -23,7 +23,7 @@ pipelines:
           resources:
             - sample_node
           steps:
-            - step_2
+            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_1..."
@@ -42,5 +42,21 @@ pipelines:
             - step_1
         execution:
           onExecute:
-            - echo "executing test bash step_2..."            
+            - echo "executing test bash step_2..."     
+            
+      - name: step_3
+        type: bash
+        setup:
+          environmentVariables:
+            normal:
+              ENV5: value5
+              ENV6: value6       
+        triggeredBy:
+          resources:
+            - sample_node 
+          steps:
+            - step_2
+        execution:
+          onExecute:
+            - echo "executing test bash step_3..."                 
             
