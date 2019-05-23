@@ -22,8 +22,6 @@ pipelines:
         triggeredBy:
           resources:
             - sample_node
-          steps:
-            - step_3
         execution:
           onExecute:
             - echo "executing test bash step_1..."
