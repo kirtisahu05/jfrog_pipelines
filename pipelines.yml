@@ -57,3 +57,5 @@ pipelines:
         execution:
           onExecute:
             - echo "executing test bash step_3..."        
+        outputResources:
+          - sample_node
