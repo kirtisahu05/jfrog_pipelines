@@ -38,5 +38,6 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - ls $res_file_res_in_resourcePath
         outputResources:
             - file_res_out
