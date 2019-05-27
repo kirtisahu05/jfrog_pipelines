@@ -4,8 +4,8 @@ resources:
     configuration:
       integrationName: ankul_artifactory
     initialVersion:
-      fileLocation: "string"
-      fileName: "string"
+      fileLocation: "ankul_local_repo/foo"
+      fileName: "test.txt"
    
   - name: file_res_out
     type: file
