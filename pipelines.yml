@@ -28,7 +28,7 @@ resources:
       offset: 12
       
 pipelines:
-  - name: test_pipeline
+  - name: ankul_pipeline
     steps:
       - name: step_1
         type: bash
