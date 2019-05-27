@@ -9,8 +9,8 @@ pipelines:
    
       - name: step_3
         type: bash
-        configuration:
-          affinityGroup: test_group
+#         configuration:
+#           affinityGroup: test_group
         triggeredBy:
           steps:
             - step_1
@@ -29,8 +29,8 @@ pipelines:
             
       - name: step_4
         type: bash
-        configuration:
-          affinityGroup: test_group        
+#         configuration:
+#           affinityGroup: test_group        
         triggeredBy:
           steps:
             - step_3
