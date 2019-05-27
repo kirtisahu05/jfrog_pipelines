@@ -9,7 +9,8 @@ pipelines:
    
       - name: step_3
         type: bash
-#         configuration:
+        configuration:
+          chronological: true
 #           affinityGroup: test_group
         triggeredBy:
           steps:
