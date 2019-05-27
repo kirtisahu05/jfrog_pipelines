@@ -1,12 +1,11 @@
 resources:
   - name: file_res_in
     type: file
-    fileLocation: "ankul_local_repo/foo"
-    fileName: "test.txt"
     configuration:
       integrationName: ankul_artifactory
     initialVersion:
-      fileDtTm: "string"
+      fileLocation: " example-repo-local"
+      fileName: "archive.zip"
    
   - name: file_res_out
     type: file
