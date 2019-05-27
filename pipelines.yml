@@ -2,7 +2,7 @@ resources:
   - name: file_res_in
     type: file
     configuration:
-      integrationName: art
+      integrationName: ankul_artifactory
     initialVersion:
       fileLocation: "string"
       fileName: "string"
@@ -10,7 +10,7 @@ resources:
   - name: file_res_out
     type: file
     configuration:
-      integrationName: art
+      integrationName: ankul_artifactory
     initialVersion:
       fileDtTm: "random "
       pattern: "string"
