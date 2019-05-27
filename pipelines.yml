@@ -37,6 +37,6 @@ pipelines:
             - file_res_in
         execution:
           onExecute:
-            - echo "executing step_1..."
+            - printenv
         outputResources:
             - file_res_out
