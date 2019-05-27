@@ -1,121 +1,42 @@
 resources:
-  - name: sample_node
-    type: gitRepo
-    repoPath: ankul-shippable/sample_node
-    configuration:
-      integrationName: ankul_github
-    initialVersion:
-      sha: master
-
-  - name: file_res_jTest
+  - name: file_res_in
     type: file
-    fileLocation: https://raw.githubusercontent.com/ChaitanyaVootla/jfrogTest/master/test.yml
-    fileName: shippable.yml
     configuration:
-      integrationName: ankul_github
+      integrationName: ankul_artifactory
     initialVersion:
-      fileDtTm: random_value
-
-  - name: image_res_jTest
-    type: image
-    imageName: "library/nginx"
+      fileLocation: "string"
+      fileName: "string"
+   
+  - name: file_res_out
+    type: file
     configuration:
-      integrationName: ankul_github
+      integrationName: ankul_artifactory
     initialVersion:
-      imageTag: latest
-
-  - name: stateResource_jTest
-    type: state
-
-  - name: webhookRes_jTest
-    type: webhook
-    configuration:
-      integrationName: ankul_github
-    initialVersion:
-      payload: "asd"
-  
+      fileDtTm: "random "
+      pattern: "string"
+      aql: "string"
+      target: "string"
+      props: "string"
+      recursive: true
+      flat: false
+      excludePatterns: "string"
+      archiveEntries: "string"
+      build: "string"
+      sortBy: "string"
+      sortOrder: "string"
+      limit: 2
+      offset: 12
+      
 pipelines:
-  - name: jTest_pipeline
-    setup:
-      runtime: onHost
-    steps:
-      - name: step_jTest
-        type: bash
-        configuration:
-          affinityGroup: test_group
-        setup:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: java
-                versions:
-                  - 10.10.10
-        requires:
-          integrations:
-            - ankul_github
-          resources:
-            - stateResource_jTest
-        triggeredBy:
-          resources:
-            - sample_node
-            - webhookRes_jTest
-        execution:
-          onExecute:
-            - echo "executing..."
-        outputResources:
-          - file_res_jTest
-          - stateResource_jTest
-          - image_res_jTest
-          
-      - name: img_test_push
-        type: bash
-        triggeredBy:
-          steps:
-            - step_jTest
-        execution:
-          onExecute:
-            - printenv
-            - write_output image_res_jTest imageTag=master
-        outputResources:
-          - image_res_jTest
-      - name: img_read
-        type: bash
-        execution:
-          onExecute:
-            - printenv
-        triggeredBy:
-          resources:
-            - image_res_jTest
-            
-            
-      - name: img_test_push_2
-        type: bash
-        requires:
-          resources:
-            - image_res_jTest
-        execution:
-          onExecute:
-            - printenv
-            - write_output image_res_jTest imageTag=master
-        
-
-  - name: ankul_pipelines_3
+  - name: test_pipeline
     steps:
       - name: step_1
         type: bash
-        requires:
+        triggeredBy:
           resources:
-            - image_res_jTest
+            - file_res_in
         execution:
           onExecute:
-            - printenv
-            
-      - name: step_2
-        type: bash
-        requires:
-          resources:
-            - image_res_jTest
-        execution:
-          onExecute:
-            - printenv            
+            - echo "executing step_1..."
+        outputResources:
+            - file_res_out
