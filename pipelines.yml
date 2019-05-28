@@ -84,6 +84,8 @@ pipelines:
           affinityGroup: test
           nodePool: ankul_nodes
         requires:
+          resources:
+            - sample_node
           integrations:
             - ankul_artifactory
 #         triggeredBy:
