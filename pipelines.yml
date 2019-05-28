@@ -48,3 +48,5 @@ pipelines:
         requires:
           steps:
             - build_step
+          integrations:
+            - ankul_artifactory
