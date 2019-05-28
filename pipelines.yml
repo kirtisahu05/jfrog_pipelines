@@ -82,6 +82,9 @@ pipelines:
         configuration:
           affinityGroup: test
           nodePool: ankul_nodes
+        setup:
+          promote:
+            targetRepo: ankul_local_repo    
         requires:
           integrations:
             - ankul_artifactory         
