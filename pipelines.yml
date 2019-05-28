@@ -14,11 +14,11 @@ resources:
     version:
       sha: "master"
       
-  - name: buildInfo-2
-    type: buildInfo
-    version:
-      buildName: foo
-      buildNumber: 1  
+#   - name: buildInfo-2
+#     type: buildInfo
+#     version:
+#       buildName: foo
+#       buildNumber: 1  
       
 pipelines:
   - name: ankul_pipeline
@@ -68,5 +68,3 @@ pipelines:
         triggeredBy:
           steps:
             - push
-        outputResources:
-          - buildInfo-2
