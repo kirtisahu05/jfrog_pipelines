@@ -1,38 +1,40 @@
 resources:
-  - name: file_res_1
+  - name: files
     type: file
     configuration:
       integrationName: ankul_artifactory
     version:
-      fileLocation: " example-repo-local"
-      fileName: "archive.zip"
+      pattern: "demp/app/"
    
-  - name: file_res_2
-    type: file
+  - name: sample_node
+    type: gitRepo
+    repoPath: ankul-shippable/sample_node
     configuration:
-      integrationName: ankul_artifactory
+      integrationName: ankul_github
     version:
-      pattern: "ragesh-generic/"
+      sha: "master"
       
 pipelines:
   - name: ankul_pipeline
     steps:
-      - name: build_step
-        type: bash
+      - name: build
+        type: build
         configuration:
           affinityGroup: test
           nodePool: ankul_nodes
-        triggeredBy:
+        payloadType: docker
+        setup:
+          build:
+            dockerFileLocation: .
+            dockerFileName: Dockerfile
+            imageName: 34.66.110.173/docker-local/ankul
+            imageTag: $PIPELINE_NAME.$RUN_NUMBER
+        requires:
+          integrations:
+            - ankul_artifactory
           resources:
-            - file_res_1
-            - file_res_2
-        execution:
-          onExecute:
-            - printenv
-            - sudo apt-get install tree
-            - tree $res_file_res_1_resourcePath
-            - tree $res_file_res_2_resourcePath
-            - cat $STEP_TMP_DIR/fileSpecs.json
+            - sample_node
+            - files
  
 #       - name: push_step
 #         type: push
