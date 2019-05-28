@@ -11,7 +11,7 @@ resources:
     type: file
     configuration:
       integrationName: ankul_artifactory
-    initialVersion:
+    version:
       pattern: "ragesh-generic/test-foo*.txt"
       
 pipelines:
