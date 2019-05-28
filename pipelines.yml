@@ -68,5 +68,5 @@ pipelines:
         triggeredBy:
           steps:
             - push
-        outputResources
+        outputResources:
           - buildInfo
