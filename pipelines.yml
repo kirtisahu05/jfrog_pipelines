@@ -62,6 +62,9 @@ pipelines:
         triggeredBy:
           steps:
             - build
+        execution:
+          onStart:
+            - printenv
             
       - name: publish
         type: publish
