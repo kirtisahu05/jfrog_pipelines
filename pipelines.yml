@@ -4,7 +4,7 @@ resources:
     configuration:
       integrationName: ankul_artifactory
     version:
-      pattern: "example-repo-local/"
+      pattern: "npm-dev-local/"
    
   - name: sample_node
     type: gitRepo
