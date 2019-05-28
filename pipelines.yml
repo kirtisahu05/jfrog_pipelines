@@ -31,6 +31,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - ls $res_file_res_1_resourcePath
-            - ls $res_file_res_2_resourcePath
+            - sudo apt-get install tree
+            - tree $res_file_res_1_resourcePath
+            - tree $res_file_res_2_resourcePath
             - cat $STEP_TMP_DIR/fileSpecs.json
