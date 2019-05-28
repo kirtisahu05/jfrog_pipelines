@@ -27,7 +27,7 @@ pipelines:
           build:
             dockerFileLocation: .
             dockerFileName: Dockerfile
-            imageName: 34.66.110.173/docker-local/ankul
+            imageName: 34.66.110.173:8081/docker-local/ankul
             imageTag: $PIPELINE_NAME.$RUN_NUMBER
         requires:
           integrations:
