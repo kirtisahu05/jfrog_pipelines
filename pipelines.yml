@@ -3,7 +3,7 @@ resources:
     type: file
     configuration:
       integrationName: ankul_artifactory
-    initialVersion:
+    version:
       fileLocation: " example-repo-local"
       fileName: "archive.zip"
    
