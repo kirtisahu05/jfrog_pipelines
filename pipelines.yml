@@ -74,9 +74,7 @@ pipelines:
             - tree /tmp/jfrog
           onComplete:
             - tree /tmp/jfrog
-            - buildName=$(eval echo "$""$buildStepName"_buildName)
-            - buildNumber=$(eval echo "$""$buildStepName"_buildNumber)
-            - jfrog rt bp $buildName $buildNumber
+
             
       - name: publish
         type: publish
@@ -84,13 +82,11 @@ pipelines:
           affinityGroup: test
           nodePool: ankul_nodes
         requires:
-          resources:
-            - sample_node
           integrations:
             - ankul_artifactory
-#         triggeredBy:
-#           steps:
-#             - push
+        triggeredBy:
+          steps:
+            - push
         outputResources:
           - info
         execution:
