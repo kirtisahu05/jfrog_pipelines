@@ -47,6 +47,12 @@ pipelines:
           resources:
             - sample_node
             - files
+        execution:
+          onStart:
+            - sudo apt-get install tree
+            - tree /tmp/jfrog
+          onComplete:
+            - tree /tmp/jfrog
 
       - name: push
         type: push
@@ -64,7 +70,10 @@ pipelines:
             - build
         execution:
           onStart:
-            - printenv
+            - sudo apt-get install tree
+            - tree /tmp/jfrog
+          onComplete:
+            - tree /tmp/jfrog
             
       - name: publish
         type: publish
@@ -79,6 +88,12 @@ pipelines:
             - push
         outputResources:
           - info
+        execution:
+          onStart:
+            - sudo apt-get install tree
+            - tree /tmp/jfrog
+          onComplete:
+            - tree /tmp/jfrog          
 
       - name: promote
         type: promote
