@@ -14,7 +14,7 @@ resources:
     version:
       sha: "master"
       
-  - name: buildInfo
+  - name: buildInfo-2
     type: buildInfo
     version:
       buildName: foo
@@ -69,4 +69,4 @@ pipelines:
           steps:
             - push
         outputResources:
-          - buildInfo
+          - buildInfo-2
