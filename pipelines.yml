@@ -36,17 +36,17 @@ pipelines:
             - sample_node
             - files
  
-#       - name: push_step
-#         type: push
-#         configuration:
-#           affinityGroup: test
-#           nodePool: ankul_nodes
-#         setup:
-#           push:
-#             targetRepo: ankul_local_repo
-#         requires:
-#           integrations:
-#             - ankul_artifactory
-#         triggeredBy:
-#           steps:
-#             - build_step
+      - name: push
+        type: push
+        configuration:
+          affinityGroup: test
+          nodePool: ankul_nodes
+        setup:
+          push:
+            targetRepo: docker-local
+        requires:
+          integrations:
+            - ankul_artifactory
+        triggeredBy:
+          steps:
+            - build
