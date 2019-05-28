@@ -74,6 +74,9 @@ pipelines:
             - tree /tmp/jfrog
           onComplete:
             - tree /tmp/jfrog
+            - buildName=$(eval echo "$""$buildStepName"_buildName)
+            - buildNumber=$(eval echo "$""$buildStepName"_buildNumber)
+            - jfrog rt bp ankul-pipeline $buildName $buildNumber
             
       - name: publish
         type: publish
@@ -83,9 +86,9 @@ pipelines:
         requires:
           integrations:
             - ankul_artifactory
-        triggeredBy:
-          steps:
-            - push
+#         triggeredBy:
+#           steps:
+#             - push
         outputResources:
           - info
         execution:
