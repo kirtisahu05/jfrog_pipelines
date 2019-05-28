@@ -76,7 +76,7 @@ pipelines:
             - tree /tmp/jfrog
             - buildName=$(eval echo "$""$buildStepName"_buildName)
             - buildNumber=$(eval echo "$""$buildStepName"_buildNumber)
-            - jfrog rt bp ankul-pipeline $buildName $buildNumber
+            - jfrog rt bp $buildName $buildNumber
             
       - name: publish
         type: publish
