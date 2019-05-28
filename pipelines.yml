@@ -48,7 +48,8 @@ pipelines:
           push:
             targetRepo: ankul_local_repo
         requires:
-          steps:
-            - build_step
           integrations:
             - ankul_artifactory
+        triggeredBy:
+          steps:
+            - build_step
