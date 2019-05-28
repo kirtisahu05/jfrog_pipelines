@@ -13,7 +13,8 @@ resources:
       integrationName: ankul_artifactory
     initialVersion:
       pattern: "demo/app/"
-      flat: true
+      flat: false
+      recursive: true
       
 pipelines:
   - name: ankul_pipeline
