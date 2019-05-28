@@ -41,8 +41,7 @@ pipelines:
           resources:
             - sample_node
             - files
-        outputResources:
-          - info
+
       - name: push
         type: push
         configuration:
@@ -69,3 +68,5 @@ pipelines:
         triggeredBy:
           steps:
             - push
+        outputResources:
+          - info
