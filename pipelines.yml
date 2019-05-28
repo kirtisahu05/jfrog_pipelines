@@ -20,7 +20,7 @@ pipelines:
     steps:
       - name: step_1
         type: bash
-        configurations:
+        configuration:
           nodePool: ankul_nodes
         triggeredBy:
           resources:
