@@ -46,7 +46,7 @@ pipelines:
           nodePool: ankul_nodes
         requires:
           steps:
-            - build_ste
+            - build_step
         execution:
           onExecute:
             - printenv
