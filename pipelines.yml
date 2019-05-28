@@ -44,9 +44,7 @@ pipelines:
         configuration:
           affinityGroup: test
           nodePool: ankul_nodes
+        payloadType: docker
         requires:
           steps:
             - build_step
-        execution:
-          onExecute:
-            - printenv
