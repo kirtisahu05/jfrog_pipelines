@@ -22,9 +22,10 @@ resources:
 pipelines:
   - name: ankul_pipeline
     steps:
-      - name: step_1
+      - name: build_step
         type: bash
         configuration:
+          affinityGroup: test
           nodePool: ankul_nodes
         triggeredBy:
           resources:
@@ -37,4 +38,15 @@ pipelines:
             - tree $res_file_res_1_resourcePath
             - tree $res_file_res_2_resourcePath
             - cat $STEP_TMP_DIR/fileSpecs.json
-            - echo test_3
+ 
+      - name: push_step
+        type: push
+        configuration:
+          affinityGroup: test
+          nodePool: ankul_nodes
+        requires:
+          steps:
+            - build_ste
+        execution:
+          onExecute:
+            - printenv
