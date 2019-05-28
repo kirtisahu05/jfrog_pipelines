@@ -44,6 +44,9 @@ pipelines:
         configuration:
           affinityGroup: test
           nodePool: ankul_nodes
+        setup:
+          push:
+            targetRepo: ankul_local_repo
         requires:
           steps:
             - build_step
