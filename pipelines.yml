@@ -17,6 +17,7 @@ resources:
       recursive: true
       target: "ankul_local_repo/"
       limit: 5
+      offset: 5
       
 pipelines:
   - name: ankul_pipeline
