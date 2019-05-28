@@ -1,5 +1,5 @@
 resources:
-  - name: file_res_in
+  - name: file_res_1
     type: file
     configuration:
       integrationName: ankul_artifactory
@@ -7,25 +7,13 @@ resources:
       fileLocation: " example-repo-local"
       fileName: "archive.zip"
    
-  - name: file_res_out
+  - name: file_res_2
     type: file
     configuration:
       integrationName: ankul_artifactory
     initialVersion:
-      fileDtTm: "random "
-      pattern: "string"
-      aql: "string"
-      target: "string"
-      props: "string"
-      recursive: true
-      flat: false
-      excludePatterns: "string"
-      archiveEntries: "string"
-      build: "string"
-      sortBy: "string"
-      sortOrder: "string"
-      limit: 2
-      offset: 12
+      pattern: "demo/app/"
+      flat: true
       
 pipelines:
   - name: ankul_pipeline
@@ -34,10 +22,10 @@ pipelines:
         type: bash
         triggeredBy:
           resources:
-            - file_res_in
+            - file_res_1
+            - file_res_2
         execution:
           onExecute:
             - printenv
-            - ls $res_file_res_in_resourcePath
-        outputResources:
-            - file_res_out
+            - ls $res_file_res_1_resourcePath
+            - ls $res_file_res_2_resourcePath
