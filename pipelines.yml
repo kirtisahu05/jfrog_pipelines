@@ -15,7 +15,7 @@ resources:
       pattern: "demo/app/"
       flat: false
       recursive: true
-      target: "demo/app2/"
+      target: "ankul_local_repo/"
       
 pipelines:
   - name: ankul_pipeline
