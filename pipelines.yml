@@ -37,3 +37,4 @@ pipelines:
             - tree $res_file_res_1_resourcePath
             - tree $res_file_res_2_resourcePath
             - cat $STEP_TMP_DIR/fileSpecs.json
+            - echo test_1
