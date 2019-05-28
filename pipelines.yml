@@ -12,12 +12,7 @@ resources:
     configuration:
       integrationName: ankul_artifactory
     initialVersion:
-      pattern: "demo/app/"
-      flat: false
-      recursive: true
-      target: "ankul_local_repo/"
-      limit: 5
-      offset: 5
+      pattern: "ragesh-generic/test-foo*.txt"
       
 pipelines:
   - name: ankul_pipeline
