@@ -14,11 +14,17 @@ resources:
     version:
       sha: "master"
       
+  - name: promoteInfo
+    type: buildInfo
+    version:
+      buildName: bar
+      buildNumber: 2 
+      
   - name: info
     type: buildInfo
     version:
       buildName: foo
-      buildNumber: 1  
+      buildNumber: 1        
       
 pipelines:
   - name: ankul_pipeline
@@ -70,3 +76,17 @@ pipelines:
             - push
         outputResources:
           - info
+
+      - name: promote
+        type: promote
+        configuration:
+          affinityGroup: test
+          nodePool: ankul_nodes
+        requires:
+          integrations:
+            - ankul_artifactory         
+        triggeredBy:
+          resources:
+            - info
+        outputResources:
+          - promoteInfo
