@@ -41,7 +41,8 @@ pipelines:
           resources:
             - sample_node
             - files
- 
+        outputResources:
+          - info
       - name: push
         type: push
         configuration:
