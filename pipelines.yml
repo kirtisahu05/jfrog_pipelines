@@ -67,7 +67,7 @@ pipelines:
         type: publish
         configuration:
           affinityGroup: test
-          nodePool: ankul_nodes
+          nodePool: nodes_kirti
         requires:
           integrations:
             - artifactory_kirti
@@ -81,7 +81,7 @@ pipelines:
         type: promote
         configuration:
           affinityGroup: test
-          nodePool: ankul_nodes
+          nodePool: nodes_kirti
         setup:
           promote:
             targetRepo: ankul_local_repo    
