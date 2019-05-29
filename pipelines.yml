@@ -8,7 +8,7 @@ resources:
    
   - name: sample_node
     type: gitRepo
-    repoPath: ankul-shippable/sample_node
+    repoPath: kirtisahu05/sample_node
     configuration:
       integrationName: github_kirti
     version:
