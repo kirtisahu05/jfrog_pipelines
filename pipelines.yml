@@ -2,7 +2,7 @@ resources:
   - name: files
     type: file
     configuration:
-      integrationName: ankul_artifactory
+      integrationName: artifactory_kirti
     version:
       pattern: "npm-dev-local/"
    
@@ -10,7 +10,7 @@ resources:
     type: gitRepo
     repoPath: ankul-shippable/sample_node
     configuration:
-      integrationName: ankul_github
+      integrationName: github_kirti
     version:
       sha: "master"
       
