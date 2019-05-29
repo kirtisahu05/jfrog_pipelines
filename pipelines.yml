@@ -33,7 +33,7 @@ pipelines:
         type: build
         configuration:
           affinityGroup: test
-          nodePool: ankul_nodes
+          nodePool: nodes_kirti
         payloadType: docker
         setup:
           build:
@@ -43,7 +43,7 @@ pipelines:
             imageTag: $PIPELINE_NAME.$RUN_NUMBER
         requires:
           integrations:
-            - ankul_artifactory
+            - artifactory_kirti
           resources:
             - sample_node
             - files
@@ -52,13 +52,13 @@ pipelines:
         type: push
         configuration:
           affinityGroup: test
-          nodePool: ankul_nodes
+          nodePool: nodes_kirti
         setup:
           push:
             targetRepo: docker-local
         requires:
           integrations:
-            - ankul_artifactory
+            - artifactory_kirti
         triggeredBy:
           steps:
             - build
@@ -70,7 +70,7 @@ pipelines:
           nodePool: ankul_nodes
         requires:
           integrations:
-            - ankul_artifactory
+            - artifactory_kirti
         triggeredBy:
           steps:
             - push
@@ -87,7 +87,7 @@ pipelines:
             targetRepo: ankul_local_repo    
         requires:
           integrations:
-            - ankul_artifactory         
+            - artifactory_kirti         
         triggeredBy:
           resources:
             - info
